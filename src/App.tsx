@@ -1,16 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
-import LocationOn from '@mui/icons-material/LocationOn';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
+import Typography from '@mui/material/Typography';
 import { getLocations, getForecast } from './actions';
 import Forecast from './components/forecast';
+import Locations from './components/locations';
 import { ILocation } from './interfaces';
 
 const theme = createTheme({
@@ -97,23 +91,8 @@ export default function App() {
                         <Typography sx={{ mt: 4, mb: 2 }} variant="h1" component="div">
                             Select your location
                         </Typography>
+                        <Locations locations={locations} setLocation={setLocation} />
 
-                        <List>
-                            {locations.map((location: ILocation, index: number) => {
-                                return (
-                                    <ListItem onClick={() => setLocation(location)} key={index} sx={{ cursor: 'pointer' }}>
-                                        <ListItemAvatar>
-                                            <Avatar>
-                                                <LocationOn />
-                                            </Avatar>
-                                        </ListItemAvatar>
-                                        <ListItemText
-                                            primary={location.title}
-                                        />
-                                    </ListItem>
-                                )
-                            })}
-                        </List>
                     </Box>
                 }
             </ThemeProvider>
